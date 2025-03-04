@@ -5,15 +5,10 @@ import program from 'commander'
 import { IndentationText, NewLineKind, Project, QuoteKind } from 'ts-morph'
 import { declassify } from './index'
 
-program
-  .name('vue-declassify')
+program.createCommand('vue-declassify')
   .version('1.0.0')
-  .command('declassify <component>', {
-    isDefault: true,
-  })
-  .description('rewrites the TypeScript Vue component to object-based syntax', {
-    component: 'path to the component (.ts or .vue file)',
-  })
+  .description('rewrites the TypeScript Vue component to object-based syntax')
+  .argument('<component>', 'path to the component (.ts or .vue file)')
   .action((path: string) => {
     const project = new Project({
       skipAddingFilesFromTsConfig: true,
